@@ -15,7 +15,11 @@ const W12MForm = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("the submit was pressed");
+    console.log("speciesName: " + speciesName);
+    console.log("planetName: " + planetName);
+    console.log("numberOfBeings: " + numberOfBeings);
+    console.log("twoPlusTwo: " + twoPlusTwo);
+    console.log("reasonForSparing: " + reasonForSparing);
     // form submission logic here
   };
 

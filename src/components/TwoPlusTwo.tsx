@@ -16,8 +16,8 @@ export const TwoPlusTwo: React.FC<TwoPlusTwoProps> = ({
       id="twoPlusTwo"
       onChange={onChangeTwoPlusTwo}
     >
-      <option value={twoPlusTwo}>Four</option>
       <option value="Not Four">Not Four</option>
+      <option value={twoPlusTwo}>Four</option>
     </select>
   </>
 );
