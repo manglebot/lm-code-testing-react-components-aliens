@@ -26,3 +26,9 @@ body {
   justify-content: center;
   margin: 0;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 0 2em 1em;
+}
