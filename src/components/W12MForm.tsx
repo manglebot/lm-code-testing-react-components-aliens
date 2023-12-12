@@ -3,7 +3,7 @@ import W12MHeader from "./W12MHeader";
 import { SpeciesName } from "./speciesName";
 import { PlanetName } from "./planetName";
 import { NumberOfBeings } from "./numberOfBeings";
-import { TwoPlusTwo } from "./TwoPlusTwo";
+import { TwoPlusTwo } from "./twoPlusTwo";
 import { ReasonForSparing } from "./reasonForSparing";
 
 const W12MForm = () => {
