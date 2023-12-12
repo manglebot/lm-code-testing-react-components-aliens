@@ -18,6 +18,8 @@ describe("Chek the Species Name label and input", () => {
     // Act
     const labelElement = document.querySelector("label");
     const inputElement = document.querySelector("input");
+    const inputElementValue = inputElement?.value;
+
     const labelClass = document.querySelector("label.form__label");
     const inputClass = document.querySelector("input.form__input");
 
@@ -28,8 +30,6 @@ describe("Chek the Species Name label and input", () => {
     expect(inputClass).toBeInTheDocument();
 
     expect(labelElement).toHaveTextContent("Species Name:");
+    expect(inputElementValue).toBe("Human");
   });
 });
-
-// other test ideas -
-// toHaveFocus()
