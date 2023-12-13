@@ -4,7 +4,7 @@ import { SpeciesName } from "./speciesName";
 describe("Chek the Species Name label and input", () => {
   test("find the label and input tags and their classes", () => {
     // Arrange
-    const speciesName = "Human";
+    const speciesName = "Dolphin";
     const onChangeSpeciesName = (e: React.ChangeEvent<HTMLInputElement>) => {};
 
     // Act
@@ -17,8 +17,8 @@ describe("Chek the Species Name label and input", () => {
 
     // Act
     const labelElement = document.querySelector("label");
-    const inputElement = document.querySelector("input");
-    const inputElementValue = inputElement?.value;
+    const inputElement = document.querySelector("input")!;
+    const inputElementValue = inputElement.value;
 
     const labelClass = document.querySelector("label.form__label");
     const inputClass = document.querySelector("input.form__input");
@@ -30,6 +30,6 @@ describe("Chek the Species Name label and input", () => {
     expect(inputClass).toBeInTheDocument();
 
     expect(labelElement).toHaveTextContent("Species Name:");
-    expect(inputElementValue).toBe("Human");
+    expect(inputElementValue).toBe("Dolphin");
   });
 });
