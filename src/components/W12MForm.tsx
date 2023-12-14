@@ -8,9 +8,9 @@ import { ReasonForSparing } from "./reasonForSparing";
 
 const W12MForm = () => {
   const [speciesName, setSpeciesName] = useState("");
-  const [planetName, setPlanetName] = useState("Earth");
-  const [numberOfBeings, setNumberOfBeings] = useState(8078300999);
-  const [twoPlusTwo, setTwoPlusTwo] = useState("");
+  const [planetName, setPlanetName] = useState("");
+  const [numberOfBeings, setNumberOfBeings] = useState(0); //8078300999
+  const [twoPlusTwo, setTwoPlusTwo] = useState("Not Four");
   const [reasonForSparing, setReasonForSparing] = useState("");
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -28,11 +28,11 @@ const W12MForm = () => {
       <W12MHeader />
       <form onSubmit={handleSubmit}>
         <SpeciesName
-          initialSpeciesName={speciesName}
+          speciesName={speciesName}
           onChangeSpeciesName={(e) => setSpeciesName(e.target.value)}
         />
         <PlanetName
-          initialPlanetName={planetName}
+          planetName={planetName}
           onChangePlanetName={(e) => setPlanetName(e.target.value)}
         />
         <NumberOfBeings
