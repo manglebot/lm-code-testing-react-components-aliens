@@ -1,30 +1,39 @@
-import { render, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { SpeciesName } from "./speciesName";
 
 describe("Chek the Species Name label and input", () => {
   test("find the label and input tags and their classes, and simulate input change", () => {
     // Arrange
-    // let inputValue = "Human";
-    const initialSpeciesName = "Human";
+    const speciesName = "Human";
+    const onChangeSpeciesName = jest.fn();
 
     // Act
-    render(<SpeciesName initialSpeciesName={initialSpeciesName} />);
+    const { getByLabelText } = render(
+      <SpeciesName
+        initialSpeciesName={speciesName}
+        onChangeSpeciesName={onChangeSpeciesName}
+      />
+    );
+
+    const inputElement = getByLabelText("Species Name:");
 
     // Act
     const labelElement = document.querySelector("label");
+    // const inputElement = document.querySelector("input")!;
     const labelClass = document.querySelector("label.form__label");
-    const inputElement = document.querySelector("input")!;
     const inputClass = document.querySelector("input.form__input");
 
-    fireEvent.change(inputElement, { target: { value: "Dolphin" } });
+    userEvent.clear(inputElement);
+    userEvent.type(inputElement, "Dolphin");
 
     // Assert
     expect(labelElement).toBeInTheDocument();
-    expect(labelClass).toBeInTheDocument();
     expect(inputElement).toBeInTheDocument();
+    expect(labelClass).toBeInTheDocument();
     expect(inputClass).toBeInTheDocument();
 
     expect(labelElement).toHaveTextContent("Species Name:");
-    expect(inputElement.value).toBe("Dolphin");
+    expect(onChangeSpeciesName).toHaveBeenCalled();
   });
 });

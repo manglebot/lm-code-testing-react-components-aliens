@@ -28,11 +28,11 @@ const W12MForm = () => {
       <W12MHeader />
       <form onSubmit={handleSubmit}>
         <SpeciesName
-          speciesName={speciesName}
+          initialSpeciesName={speciesName}
           onChangeSpeciesName={(e) => setSpeciesName(e.target.value)}
         />
         <PlanetName
-          planetName={planetName}
+          initialPlanetName={planetName}
           onChangePlanetName={(e) => setPlanetName(e.target.value)}
         />
         <NumberOfBeings

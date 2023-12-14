@@ -1,25 +1,30 @@
 import { render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { PlanetName } from "./planetName";
 
-describe("Chek the Species Name label and input", () => {
+describe("Chek the Planet Name label and input", () => {
   test("find the label and input tags and their classes", () => {
     // Arrange
-    const planetName = "Human";
-    const onChangePlanetName = (e: React.ChangeEvent<HTMLInputElement>) => {};
+    const planetName = "Earth";
+    const onChangePlanetName = jest.fn();
 
     // Act
-    render(
+    const { getByLabelText } = render(
       <PlanetName
-        planetName={planetName}
+        initialPlanetName={planetName}
         onChangePlanetName={onChangePlanetName}
       />
     );
 
+    const inputElement = getByLabelText("Planet Name:");
+
     // Act
     const labelElement = document.querySelector("label");
-    const inputElement = document.querySelector("input");
     const labelClass = document.querySelector("label.form__label");
     const inputClass = document.querySelector("input.form__input");
+
+    userEvent.clear(inputElement);
+    userEvent.type(inputElement, "Mars");
 
     // Assert
     expect(labelElement).toBeInTheDocument();
@@ -28,5 +33,6 @@ describe("Chek the Species Name label and input", () => {
     expect(inputClass).toBeInTheDocument();
 
     expect(labelElement).toHaveTextContent("Planet Name:");
+    expect(onChangePlanetName).toHaveBeenCalled();
   });
 });

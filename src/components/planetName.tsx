@@ -1,10 +1,10 @@
 interface PlanetNameProps {
-  planetName: string;
+  initialPlanetName: string;
   onChangePlanetName: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const PlanetName: React.FC<PlanetNameProps> = ({
-  planetName,
+  initialPlanetName,
   onChangePlanetName,
 }) => (
   <>
@@ -14,7 +14,7 @@ export const PlanetName: React.FC<PlanetNameProps> = ({
     <input
       className="form__input"
       id="planetName"
-      value={planetName}
+      value={initialPlanetName}
       onChange={onChangePlanetName}
     />
   </>
