@@ -11,7 +11,7 @@ describe("Chek the Planet Name label and input", () => {
     // Act
     const { getByLabelText } = render(
       <PlanetName
-        initialPlanetName={planetName}
+        planetName={planetName}
         onChangePlanetName={onChangePlanetName}
       />
     );

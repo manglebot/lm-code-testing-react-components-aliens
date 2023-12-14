@@ -1,10 +1,10 @@
 interface PlanetNameProps {
-  initialPlanetName: string;
+  planetName: string;
   onChangePlanetName: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const PlanetName: React.FC<PlanetNameProps> = ({
-  initialPlanetName,
+  planetName: initialPlanetName,
   onChangePlanetName,
 }) => (
   <>
