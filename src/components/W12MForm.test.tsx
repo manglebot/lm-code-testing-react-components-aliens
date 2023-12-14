@@ -7,15 +7,13 @@ import {
   screen,
 } from "@testing-library/react";
 import W12MForm from "./W12MForm";
-import userEvent from "@testing-library/user-event";
 
-import { act } from "react-dom/test-utils";
+// import { validateSpeciesName } from "../validate/validateSpeciesName";
+
+// import userEvent from "@testing-library/user-event";
 
 describe("W12M Form render and submit tests", () => {
   test("renders form element", () => {
-    // we can hold onto the object returned from render()
-    // this object has a container property that we can destructure and inspect
-
     // Arrange
     const { container } = render(<W12MForm />);
 
@@ -39,26 +37,6 @@ describe("W12M Form render and submit tests", () => {
     expect(formElement).toHaveBeenCalled;
   });
 
-  test("SpeciesName input works", () => {
-    // Arrange
-    render(<W12MForm />);
-
-    // Act
-    const speciesNameInput = screen.getByRole("textbox", {
-      name: /species name:/i,
-    }) as HTMLInputElement;
-
-    // Assert initial value is empty
-    expect(speciesNameInput.value).toBe("");
-
-    // Simulate user input
-    // userEvent.type(speciesNameInput, "Alien");
-    fireEvent.change(speciesNameInput, { target: { value: "Alien" } });
-
-    // Assert
-    expect(speciesNameInput.value).toBe("Alien");
-  });
-
   test("SpeciesName input updates state correctly", () => {
     // Arrange
     render(<W12MForm />);
@@ -68,15 +46,75 @@ describe("W12M Form render and submit tests", () => {
       name: /species name:/i,
     }) as HTMLInputElement;
 
-    // Simulate user input
-    // userEvent.clear(speciesNameInput);
-    // userEvent.type(speciesNameInput, "Alien");
-    fireEvent.change(speciesNameInput, { target: { value: "Alien" } });
+    fireEvent.change(speciesNameInput, { target: { value: "Human" } });
 
-    // Assert state is updated correctly
-    act(() => {
-      // expect(speciesNameInput.value).toBe("Alien"); // This checks the DOM value
-      expect(speciesNameInput).toHaveValue("Alien"); // This checks the input's state
+    // Assert
+    expect(speciesNameInput).toHaveValue("Human");
+  });
+
+  test("PlanetName input updates state correctly", () => {
+    // Arrange
+    render(<W12MForm />);
+
+    // Act
+    const planetNameInput = screen.getByRole("textbox", {
+      name: /Planet Name:/i,
+    }) as HTMLInputElement;
+
+    // expect(planetNameInput.value).toBe("");
+    fireEvent.change(planetNameInput, { target: { value: "Earth" } });
+
+    // Assert
+    expect(planetNameInput.value).toBe("Earth");
+  });
+
+  test("numberOfBeings input updates state correctly", () => {
+    // Arrange
+    render(<W12MForm />);
+
+    // Act
+    const numberOfBeingsInput = screen.getByLabelText(
+      /Number of Beings:/i
+    ) as HTMLInputElement;
+
+    // expect(numberOfBeingsInput.value).toBe("0");
+    fireEvent.change(numberOfBeingsInput, { target: { value: "8078300999" } });
+
+    // Assert
+    expect(numberOfBeingsInput.value).toBe("8078300999");
+  });
+  test("TwoPlusTwo component updates on selection", () => {
+    // Arrange
+    render(<W12MForm />);
+
+    // Act
+    const selectElement = screen.getByLabelText(
+      "What is 2 + 2:"
+    ) as HTMLSelectElement;
+
+    fireEvent.change(selectElement, { target: { value: "Four" } });
+
+    // Assert
+    expect(selectElement.value).toBe("Four");
+  });
+
+  test("ReasonForSparing input works", () => {
+    // Arrange
+    render(<W12MForm />);
+
+    // Act
+    const reasonForSparingInput = screen.getByRole("textbox", {
+      name: /Reason For Sparing\?/i,
+    }) as HTMLTextAreaElement;
+
+    // expect(reasonForSparingInput.value).toBe("");
+    fireEvent.change(reasonForSparingInput, {
+      target: { value: "We have the best tea in the universe" },
     });
+
+    // Assert
+    expect(reasonForSparingInput.value).toBe(
+      "We have the best tea in the universe"
+    );
   });
 });
