@@ -49,9 +49,9 @@ const W12MForm = () => {
           reasonForSparing={reasonForSparing}
           onChangeReasonForSparing={(e) => setReasonForSparing(e.target.value)}
         />
-        <button type="submit">Submit Form</button>
-        {/* Reason for sparing */}
-        {/* REST OF FORM GOES HERE */}
+        <button type="submit" aria-label="Submit the form">
+          Submit Form
+        </button>
       </form>
     </section>
   );
