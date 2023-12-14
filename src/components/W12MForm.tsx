@@ -7,7 +7,7 @@ import { TwoPlusTwo } from "./twoPlusTwo";
 import { ReasonForSparing } from "./reasonForSparing";
 
 const W12MForm = () => {
-  const [speciesName, setSpeciesName] = useState("humans");
+  const [speciesName, setSpeciesName] = useState("");
   const [planetName, setPlanetName] = useState("Earth");
   const [numberOfBeings, setNumberOfBeings] = useState(8078300999);
   const [twoPlusTwo, setTwoPlusTwo] = useState("");
