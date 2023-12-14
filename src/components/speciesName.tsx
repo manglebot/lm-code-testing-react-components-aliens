@@ -1,10 +1,10 @@
 interface SpeciesNameProps {
-  initialSpeciesName: string;
+  speciesName: string;
   onChangeSpeciesName: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const SpeciesName: React.FC<SpeciesNameProps> = ({
-  initialSpeciesName,
+  speciesName: initialSpeciesName,
   onChangeSpeciesName,
 }) => (
   <>

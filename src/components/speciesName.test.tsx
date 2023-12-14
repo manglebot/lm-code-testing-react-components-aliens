@@ -11,7 +11,7 @@ describe("Chek the Species Name label and input", () => {
     // Act
     const { getByLabelText } = render(
       <SpeciesName
-        initialSpeciesName={speciesName}
+        speciesName={speciesName}
         onChangeSpeciesName={onChangeSpeciesName}
       />
     );
