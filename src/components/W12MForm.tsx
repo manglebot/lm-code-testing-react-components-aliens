@@ -7,6 +7,7 @@ import validatePlanetName from "../validate/validate_planet_name";
 import { NumberOfBeings } from "./numberOfBeings";
 import validateNumberOfBeings from "../validate/validate_number_of_beings";
 import { TwoPlusTwo } from "./twoPlusTwo";
+import validateTwoPlusTwo from "../validate/validate_two_plus_two";
 import { ReasonForSparing } from "./reasonForSparing";
 import validateReasonForSparing from "../validate/validate_reason-for-sparing";
 
@@ -49,6 +50,7 @@ const W12MForm = () => {
         <TwoPlusTwo
           twoPlusTwo={twoPlusTwo}
           onChangeTwoPlusTwo={(e) => setTwoPlusTwo(e.target.value)}
+          validate={validateTwoPlusTwo}
         />
         <ReasonForSparing
           reasonForSparing={reasonForSparing}

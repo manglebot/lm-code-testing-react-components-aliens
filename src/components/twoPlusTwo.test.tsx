@@ -8,12 +8,14 @@ describe("Check the TwoPlusTwo dropdown", () => {
     const twoPlusTwo = "Four";
     // const onChangeTwoPlusTwo = (e: React.ChangeEvent<HTMLSelectElement>) => {};
     const onChangeTwoPlusTwo = jest.fn();
+    const validateTwoPlusTwo = (twoPlusTwo: string) => twoPlusTwo;
 
     // Act
     const { getByLabelText, getByText } = render(
       <TwoPlusTwo
         twoPlusTwo={twoPlusTwo}
         onChangeTwoPlusTwo={onChangeTwoPlusTwo}
+        validate={validateTwoPlusTwo}
       />
     );
 
