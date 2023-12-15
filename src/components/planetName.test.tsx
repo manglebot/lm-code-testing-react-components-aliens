@@ -7,12 +7,14 @@ describe("Chek the Planet Name label and input", () => {
     // Arrange
     const planetName = "Earth";
     const onChangePlanetName = jest.fn();
+    const validatePlanetName = (planetName: string) => planetName;
 
     // Act
     const { getByLabelText } = render(
       <PlanetName
         planetName={planetName}
         onChangePlanetName={onChangePlanetName}
+        validate={validatePlanetName}
       />
     );
 

@@ -3,6 +3,7 @@ import W12MHeader from "./W12MHeader";
 import { SpeciesName } from "./speciesName";
 import validateSpeciesName from "../validate/validate_species_name";
 import { PlanetName } from "./planetName";
+import validatePlanetName from "../validate/validate_planet_name";
 import { NumberOfBeings } from "./numberOfBeings";
 import { TwoPlusTwo } from "./twoPlusTwo";
 import { ReasonForSparing } from "./reasonForSparing";
@@ -36,6 +37,7 @@ const W12MForm = () => {
         <PlanetName
           planetName={planetName}
           onChangePlanetName={(e) => setPlanetName(e.target.value)}
+          validate={validatePlanetName}
         />
         <NumberOfBeings
           numberOfBeings={numberOfBeings}
