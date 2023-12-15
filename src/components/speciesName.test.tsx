@@ -7,12 +7,14 @@ describe("Chek the Species Name label and input", () => {
     // Arrange
     const speciesName = "Human";
     const onChangeSpeciesName = jest.fn();
+    const validateSpeciesName = (speciesName: string) => speciesName;
 
     // Act
     const { getByLabelText } = render(
       <SpeciesName
         speciesName={speciesName}
         onChangeSpeciesName={onChangeSpeciesName}
+        validate={validateSpeciesName}
       />
     );
 
