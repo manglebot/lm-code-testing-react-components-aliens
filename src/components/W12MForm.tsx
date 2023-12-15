@@ -66,11 +66,3 @@ const W12MForm = () => {
 };
 
 export default W12MForm;
-
-// | Label              | Input Type     | Values                        |
-// | ------------------ | -------------- | ----------------------------- |
-// | Species Name       | text input tag |                               |
-// | Planet Name        | text input tag |                               |
-// | Number of beings   | text input tag |                               |
-// | What is 2 + 2      | select tag     | two option tags: "4", "Not 4" |
-// | Reason for sparing | textarea tag   |                               |
