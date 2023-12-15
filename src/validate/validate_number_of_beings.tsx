@@ -1,4 +1,4 @@
-const validateNumberOfBeings: (numberOfBeings: string) => string = (
+const ValidateNumberOfBeings: (numberOfBeings: string) => string = (
   numberOfBeings
 ) => {
   const errors: string[] = [];
@@ -15,4 +15,4 @@ const validateNumberOfBeings: (numberOfBeings: string) => string = (
   return errors.join(" ");
 };
 
-export default validateNumberOfBeings;
+export default ValidateNumberOfBeings;

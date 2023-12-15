@@ -1,4 +1,4 @@
-const validateSpeciesName: (speciesName: string) => string = (speciesName) => {
+const ValidateSpeciesName: (speciesName: string) => string = (speciesName) => {
   const errors: string[] = [];
 
   if (speciesName.length < 3 || speciesName.length > 23) {
@@ -13,4 +13,4 @@ const validateSpeciesName: (speciesName: string) => string = (speciesName) => {
   return errors.join(" ");
 };
 
-export default validateSpeciesName;
+export default ValidateSpeciesName;

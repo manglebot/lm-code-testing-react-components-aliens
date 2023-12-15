@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { SpeciesName } from "../components/speciesName";
 
-// Mock the validateSpeciesName function
 jest.mock("../validate/validate_species_name", () => ({
   __esModule: true,
   default: jest.fn(),
@@ -14,7 +13,7 @@ describe("SpeciesName component validation tests", () => {
       .fn()
       .mockReturnValue("Species Name must be between 3 and 23 characters");
 
-    //Act1
+    //Act
     render(
       <SpeciesName
         speciesName="speciesName"

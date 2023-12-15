@@ -1,4 +1,4 @@
-const validateTwoPlusTwo: (twoPlusTwo: string) => string = (twoPlusTwo) => {
+const ValidateTwoPlusTwo: (twoPlusTwo: string) => string = (twoPlusTwo) => {
   let errors: string = "";
 
   if (twoPlusTwo == "Not Four") {
@@ -8,4 +8,4 @@ const validateTwoPlusTwo: (twoPlusTwo: string) => string = (twoPlusTwo) => {
   return errors;
 };
 
-export default validateTwoPlusTwo;
+export default ValidateTwoPlusTwo;

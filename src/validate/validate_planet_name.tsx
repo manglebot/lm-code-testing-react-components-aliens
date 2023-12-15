@@ -1,4 +1,4 @@
-const validatePlanetName: (planetName: string) => string = (planetName) => {
+const ValidatePlanetName: (planetName: string) => string = (planetName) => {
   const errors: string[] = [];
 
   if (planetName.length < 2 || planetName.length > 49) {
@@ -13,4 +13,4 @@ const validatePlanetName: (planetName: string) => string = (planetName) => {
   return errors.join(" ");
 };
 
-export default validatePlanetName;
+export default ValidatePlanetName;
