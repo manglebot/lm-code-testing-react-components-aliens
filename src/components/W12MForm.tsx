@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import W12MHeader from "./W12MHeader";
 import { SpeciesName } from "./speciesName";
+import validateSpeciesName from "../validate/validate_species_name";
 import { PlanetName } from "./planetName";
 import { NumberOfBeings } from "./numberOfBeings";
 import { TwoPlusTwo } from "./twoPlusTwo";
@@ -30,6 +31,7 @@ const W12MForm = () => {
         <SpeciesName
           speciesName={speciesName}
           onChangeSpeciesName={(e) => setSpeciesName(e.target.value)}
+          validate={validateSpeciesName}
         />
         <PlanetName
           planetName={planetName}
