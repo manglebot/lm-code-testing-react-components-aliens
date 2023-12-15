@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import W12MHeader from "./W12MHeader";
 import { SpeciesName } from "./speciesName";
-import validateSpeciesName from "../validate/validate_species_name";
+import ValidateSpeciesName from "../validate/validate_species_name";
 import { PlanetName } from "./planetName";
-import validatePlanetName from "../validate/validate_planet_name";
+import ValidatePlanetName from "../validate/validate_planet_name";
 import { NumberOfBeings } from "./numberOfBeings";
-import validateNumberOfBeings from "../validate/validate_number_of_beings";
+import ValidateNumberOfBeings from "../validate/validate_number_of_beings";
 import { TwoPlusTwo } from "./twoPlusTwo";
-import validateTwoPlusTwo from "../validate/validate_two_plus_two";
+import ValidateTwoPlusTwo from "../validate/validate_two_plus_two";
 import { ReasonForSparing } from "./reasonForSparing";
-import validateReasonForSparing from "../validate/validate_reason-for-sparing";
+import validateReasonForSparing from "../validate/validate_reason_for_sparing";
 
 const W12MForm = () => {
   const [speciesName, setSpeciesName] = useState("");
@@ -35,22 +35,22 @@ const W12MForm = () => {
         <SpeciesName
           speciesName={speciesName}
           onChangeSpeciesName={(e) => setSpeciesName(e.target.value)}
-          validate={validateSpeciesName}
+          validate={ValidateSpeciesName}
         />
         <PlanetName
           planetName={planetName}
           onChangePlanetName={(e) => setPlanetName(e.target.value)}
-          validate={validatePlanetName}
+          validate={ValidatePlanetName}
         />
         <NumberOfBeings
           numberOfBeings={numberOfBeings}
           onChangeNumberOfBeings={(e) => setNumberOfBeings(e.target.value)}
-          validate={validateNumberOfBeings}
+          validate={ValidateNumberOfBeings}
         />
         <TwoPlusTwo
           twoPlusTwo={twoPlusTwo}
           onChangeTwoPlusTwo={(e) => setTwoPlusTwo(e.target.value)}
-          validate={validateTwoPlusTwo}
+          validate={ValidateTwoPlusTwo}
         />
         <ReasonForSparing
           reasonForSparing={reasonForSparing}
