@@ -7,12 +7,14 @@ describe("Chek the Number Of Beings label and input", () => {
     // Arrange
     const numberOfBeings = "8078300999";
     const onChangeNumberOfBeings = jest.fn();
+    const validateNumberOfBeings = (numberOfBeings: string) => numberOfBeings;
 
     // Act
     render(
       <NumberOfBeings
         numberOfBeings={numberOfBeings}
         onChangeNumberOfBeings={onChangeNumberOfBeings}
+        validate={validateNumberOfBeings}
       />
     );
 

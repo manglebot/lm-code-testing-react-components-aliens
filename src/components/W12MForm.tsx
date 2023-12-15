@@ -5,6 +5,7 @@ import validateSpeciesName from "../validate/validate_species_name";
 import { PlanetName } from "./planetName";
 import validatePlanetName from "../validate/validate_planet_name";
 import { NumberOfBeings } from "./numberOfBeings";
+import validateNumberOfBeings from "../validate/validate_number_of_beings";
 import { TwoPlusTwo } from "./twoPlusTwo";
 import { ReasonForSparing } from "./reasonForSparing";
 
@@ -42,6 +43,7 @@ const W12MForm = () => {
         <NumberOfBeings
           numberOfBeings={numberOfBeings}
           onChangeNumberOfBeings={(e) => setNumberOfBeings(e.target.value)}
+          validate={validateNumberOfBeings}
         />
         <TwoPlusTwo
           twoPlusTwo={twoPlusTwo}
