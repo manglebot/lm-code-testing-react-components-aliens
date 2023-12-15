@@ -1,5 +1,7 @@
 :root {
   --light: #fdf8e5;
+  --green: #a1cb9e;
+  --red: #f00;
 }
 
 @font-face {
@@ -11,7 +13,8 @@
 }
 
 body {
-  background-color: var(--light);
+  background: var(--light);
+  background: radial-gradient(circle, #f5f4ef 13%, #b0ada2 76%);
   font-family: "SleepyCat", Arial, Helvetica, sans-serif;
   line-height: 1.5;
   display: flex;
@@ -26,5 +29,5 @@ form {
 }
 
 .error-message {
-  color: #f00;
+  color: var(--red);
 }
