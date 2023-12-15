@@ -1,5 +1,5 @@
 interface NumberOfBeingsProps {
-  numberOfBeings: number;
+  numberOfBeings: string;
   onChangeNumberOfBeings: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

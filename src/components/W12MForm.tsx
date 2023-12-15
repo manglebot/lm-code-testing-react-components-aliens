@@ -11,7 +11,7 @@ import { ReasonForSparing } from "./reasonForSparing";
 const W12MForm = () => {
   const [speciesName, setSpeciesName] = useState("");
   const [planetName, setPlanetName] = useState("");
-  const [numberOfBeings, setNumberOfBeings] = useState(0); //8078300999
+  const [numberOfBeings, setNumberOfBeings] = useState("");
   const [twoPlusTwo, setTwoPlusTwo] = useState("Not Four");
   const [reasonForSparing, setReasonForSparing] = useState("");
 
@@ -41,9 +41,7 @@ const W12MForm = () => {
         />
         <NumberOfBeings
           numberOfBeings={numberOfBeings}
-          onChangeNumberOfBeings={(e) =>
-            setNumberOfBeings(parseInt(e.target.value, 10))
-          }
+          onChangeNumberOfBeings={(e) => setNumberOfBeings(e.target.value)}
         />
         <TwoPlusTwo
           twoPlusTwo={twoPlusTwo}

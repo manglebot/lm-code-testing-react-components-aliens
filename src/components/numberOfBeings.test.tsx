@@ -5,7 +5,7 @@ import { NumberOfBeings } from "./numberOfBeings";
 describe("Chek the Number Of Beings label and input", () => {
   test("find the label and input tags and their classes", () => {
     // Arrange
-    const numberOfBeings = 8078300999;
+    const numberOfBeings = "8078300999";
     const onChangeNumberOfBeings = jest.fn();
 
     // Act
