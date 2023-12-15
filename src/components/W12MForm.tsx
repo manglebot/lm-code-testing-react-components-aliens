@@ -8,6 +8,7 @@ import { NumberOfBeings } from "./numberOfBeings";
 import validateNumberOfBeings from "../validate/validate_number_of_beings";
 import { TwoPlusTwo } from "./twoPlusTwo";
 import { ReasonForSparing } from "./reasonForSparing";
+import validateReasonForSparing from "../validate/validate_reason-for-sparing";
 
 const W12MForm = () => {
   const [speciesName, setSpeciesName] = useState("");
@@ -52,6 +53,7 @@ const W12MForm = () => {
         <ReasonForSparing
           reasonForSparing={reasonForSparing}
           onChangeReasonForSparing={(e) => setReasonForSparing(e.target.value)}
+          validate={validateReasonForSparing}
         />
         <button type="submit" aria-label="Submit the form">
           Submit Form

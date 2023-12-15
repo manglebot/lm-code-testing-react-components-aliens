@@ -6,20 +6,22 @@ import {
   screen,
 } from "@testing-library/react";
 import { ReasonForSparing } from "./reasonForSparing";
-import userEvent from "@testing-library/user-event";
-import { debug } from "console";
+// import userEvent from "@testing-library/user-event";
 
 describe("Chek the Reason for Saving label and input", () => {
   test("find the label and input tags and their classes", () => {
     // Arrange
     const reasonForSparing = "We have nice smiles";
     const onChangeReasonForSparing = jest.fn();
+    const validateReasonForSparing = (reasonForSparing: string) =>
+      reasonForSparing;
 
     // Act
     const { getByLabelText } = render(
       <ReasonForSparing
         reasonForSparing={reasonForSparing}
         onChangeReasonForSparing={onChangeReasonForSparing}
+        validate={validateReasonForSparing}
       />
     );
 
@@ -34,12 +36,11 @@ describe("Chek the Reason for Saving label and input", () => {
     const labelClass = document.querySelector("label.form__label");
     const textareaClass = document.querySelector("textarea.form__textarea");
 
-    userEvent.clear(textareaElement);
+    // userEvent.clear(textareaElement);
     // userEvent.type(textareaElement, "We have the best tea in the universe");
     fireEvent.change(textareaElement, {
       target: { value: "We have the best tea in the universe" },
     });
-    debug();
 
     // Assert
     expect(labelElement).toBeInTheDocument();

@@ -3,7 +3,7 @@ const validateNumberOfBeings: (numberOfBeings: string) => string = (
 ) => {
   const errors: string[] = [];
 
-  if (parseInt(numberOfBeings, 10) < 1000000000) {
+  if (parseInt(numberOfBeings, 10) < 1000000000 || numberOfBeings === "") {
     errors.push("Number of Beings must be at least 1,000,000,000 people.");
   }
 
