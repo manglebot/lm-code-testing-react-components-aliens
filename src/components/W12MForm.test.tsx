@@ -191,6 +191,19 @@ describe("W12M Form render and submit tests", () => {
   });
 
   describe("Tests for Number of Beings", () => {
+    let mockNumberOfBeings: jest.Mock;
+
+    beforeEach(() => {
+      mockNumberOfBeings = jest.fn();
+      jest.mock("../validate/validate_number_of_beings", () => ({
+        __esModule: true,
+        default: mockNumberOfBeings,
+      }));
+    });
+
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
     test("numberOfBeings input updates state correctly", () => {
       // Arrange
       render(<W12MForm />);
@@ -208,6 +221,59 @@ describe("W12M Form render and submit tests", () => {
       // Assert
       expect(numberOfBeingsInput.value).toBe("8078300999");
     });
+
+    // ////////////////
+    test("Form validation displays Number of Beings error message", () => {
+      // Arrange
+      mockNumberOfBeings.mockReturnValue(
+        "Number of Beings must be at least 1,000,000,000 people."
+      );
+
+      // Act
+      render(<W12MForm />);
+
+      const submitButton = document.querySelector('button[type="submit"]')!;
+      fireEvent.click(submitButton);
+
+      // Assert
+      const numberOfBeings = document.getElementById("numberOfBeings")!;
+      const errorMessage = numberOfBeings.nextElementSibling;
+      expect(errorMessage).toHaveTextContent(
+        "Number of Beings must be at least 1,000,000,000 people."
+      );
+    });
+
+    test("Form validation hides Number of Beings error message", () => {
+      // Arrange
+      mockNumberOfBeings.mockReturnValueOnce(
+        "Number of Beings must be at least 1,000,000,000 people."
+      );
+      mockNumberOfBeings.mockReturnValueOnce("");
+
+      // Act
+      render(<W12MForm />);
+
+      const submitButton = document.querySelector('button[type="submit"]')!;
+      fireEvent.click(submitButton);
+
+      // Assert (initial error message present)
+      const numberOfBeings = document.getElementById("numberOfBeings")!;
+      const initialErrorMessage = numberOfBeings.nextElementSibling;
+
+      expect(initialErrorMessage).toHaveTextContent(
+        "Number of Beings must be at least 1,000,000,000 people."
+      );
+
+      fireEvent.change(numberOfBeings, {
+        target: { value: "456455556456456" },
+      });
+
+      // Assert
+      const errorMessageAfterChange = numberOfBeings.nextElementSibling!;
+      expect(errorMessageAfterChange).not.toBeInTheDocument;
+    });
+
+    // ////////////////
   });
 
   describe("Tests for Two Plus Two dropdown", () => {

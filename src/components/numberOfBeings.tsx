@@ -14,12 +14,12 @@ export const NumberOfBeings: React.FC<NumberOfBeingsProps> = ({
   const errorMessage = validate(numberOfBeings);
   return (
     <>
-      <label htmlFor="NumberOfBeings" className="form__label">
+      <label htmlFor="numberOfBeings" className="form__label">
         Number of Beings:
       </label>
       <input
         className="form__input"
-        id="NumberOfBeings"
+        id="numberOfBeings"
         value={numberOfBeings}
         onChange={onChangeNumberOfBeings}
       />
