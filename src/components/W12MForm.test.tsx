@@ -277,6 +277,20 @@ describe("W12M Form render and submit tests", () => {
   });
 
   describe("Tests for Two Plus Two dropdown", () => {
+    let mockTwoPlusTwo: jest.Mock;
+
+    beforeEach(() => {
+      mockTwoPlusTwo = jest.fn();
+      jest.mock("../validate/validate_number_of_beings", () => ({
+        __esModule: true,
+        default: mockTwoPlusTwo,
+      }));
+    });
+
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
+
     test("TwoPlusTwo component updates on selection", () => {
       // Arrange
       render(<W12MForm />);
@@ -290,6 +304,45 @@ describe("W12M Form render and submit tests", () => {
 
       // Assert
       expect(selectElement.value).toBe("Four");
+    });
+    test("Form validation displays Two Plus Two error message", () => {
+      // Arrange
+      mockTwoPlusTwo.mockReturnValue("2 + 2 must equal 4.");
+
+      // Act
+      render(<W12MForm />);
+
+      const submitButton = document.querySelector('button[type="submit"]')!;
+      fireEvent.click(submitButton);
+
+      // Assert
+      const twoPlusTwoSelect = screen.getByLabelText(
+        "What is 2 + 2:"
+      ) as HTMLSelectElement;
+      const errorMessage = twoPlusTwoSelect.nextElementSibling;
+      expect(errorMessage).toHaveTextContent("2 + 2 must equal 4.");
+    });
+
+    test("Form validation hides Two Plus Two error message", () => {
+      // Arrange
+      mockTwoPlusTwo
+        .mockReturnValueOnce("2 + 2 must equal 4.")
+        .mockReturnValueOnce("");
+
+      // Act
+      render(<W12MForm />);
+
+      const submitButton = document.querySelector('button[type="submit"]')!;
+      fireEvent.click(submitButton);
+
+      const twoPlusTwoSelect = screen.getByLabelText(
+        "What is 2 + 2:"
+      ) as HTMLSelectElement;
+      fireEvent.change(twoPlusTwoSelect, { target: { value: "Four" } });
+
+      // Assert
+      const errorMessageAfterChange = screen.queryByText("2 + 2 must equal 4.");
+      expect(errorMessageAfterChange).not.toBeInTheDocument();
     });
   });
 
