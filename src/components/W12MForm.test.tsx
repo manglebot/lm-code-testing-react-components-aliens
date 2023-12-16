@@ -347,24 +347,94 @@ describe("W12M Form render and submit tests", () => {
   });
 
   describe("Tests for Two Reason For Sparing text area", () => {
-    test("ReasonForSparing input works", () => {
+    let mockValidateReasonForSparing: jest.Mock;
+
+    beforeEach(() => {
+      mockValidateReasonForSparing = jest.fn();
+      jest.mock("../validate/validate_reason_for_sparing", () => ({
+        __esModule: true,
+        default: mockValidateReasonForSparing,
+      }));
+    });
+
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
+
+    /////
+    test("Reason For Sparing input updates state correctly", () => {
       // Arrange
       render(<W12MForm />);
 
       // Act
-      const reasonForSparingInput = screen.getByRole("textbox", {
-        name: /Reason For Sparing\?/i,
-      }) as HTMLTextAreaElement;
+      const reasonForSparingInput = screen.getByLabelText(
+        "Reason For Sparing?"
+      ) as HTMLTextAreaElement;
 
-      // expect(reasonForSparingInput.value).toBe("");
       fireEvent.change(reasonForSparingInput, {
-        target: { value: "We have the best tea in the universe" },
+        target: {
+          value:
+            "We've got towels, the most versatile and handy item in the galaxy.",
+        },
       });
 
       // Assert
       expect(reasonForSparingInput.value).toBe(
-        "We have the best tea in the universe"
+        "We've got towels, the most versatile and handy item in the galaxy."
       );
     });
+
+    test("Form validation displays Reason For Sparing error message", () => {
+      // Arrange
+      mockValidateReasonForSparing.mockReturnValue(
+        "Reason for Sparing must be between 17 and 153 characters."
+      );
+
+      // Act
+      render(<W12MForm />);
+
+      // Assert
+      const errorMessage = screen.queryByText(
+        "Reason for Sparing must be between 17 and 153 characters."
+      );
+      expect(errorMessage).toBeInTheDocument();
+    });
+
+    test("Form validation hides Reason For Sparing error message", () => {
+      // Arrange
+      mockValidateReasonForSparing.mockReturnValueOnce(
+        "Reason for Sparing must be between 17 and 153 characters."
+      );
+      mockValidateReasonForSparing.mockReturnValueOnce("");
+
+      // Act
+      render(<W12MForm />);
+
+      const submitButton = screen.getByLabelText("Submit the form");
+      fireEvent.click(submitButton);
+
+      // Assert (initial error message present)
+      const reasonForSparingInput = screen.getByLabelText(
+        "Reason For Sparing?"
+      ) as HTMLTextAreaElement;
+      const initialErrorMessage = screen.queryByText(
+        "Reason for Sparing must be between 17 and 153 characters."
+      );
+
+      expect(initialErrorMessage).toBeInTheDocument();
+
+      fireEvent.change(reasonForSparingInput, {
+        target: {
+          value: "We have the best tea in the universe",
+        },
+      });
+
+      // Assert
+      const errorMessageAfterChange = screen.queryByText(
+        "Reason for Sparing must be between 17 and 153 characters."
+      );
+      expect(errorMessageAfterChange).not.toBeInTheDocument();
+    });
+    /////
   });
 });
