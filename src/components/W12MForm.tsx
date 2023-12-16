@@ -18,6 +18,14 @@ const W12MForm = () => {
   const [twoPlusTwo, setTwoPlusTwo] = useState("Not Four");
   const [reasonForSparing, setReasonForSparing] = useState("");
 
+  let formOutput = {
+    speciesName: "",
+    planetName: "",
+    numberOfBeings: "",
+    twoPlusTwo: "",
+    reasonForSparing: "",
+  };
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     console.log("speciesName: " + speciesName);
@@ -25,7 +33,16 @@ const W12MForm = () => {
     console.log("numberOfBeings: " + numberOfBeings);
     console.log("twoPlusTwo: " + twoPlusTwo);
     console.log("reasonForSparing: " + reasonForSparing);
-    // form submission logic here
+
+    formOutput = {
+      speciesName,
+      planetName,
+      numberOfBeings,
+      twoPlusTwo,
+      reasonForSparing,
+    };
+
+    console.log(JSON.stringify(formOutput));
   };
 
   return (

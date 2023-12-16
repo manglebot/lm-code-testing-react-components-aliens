@@ -1,6 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import W12MForm from "./W12MForm";
-// import ValidateSpeciesName from "../validate/validate_species_name";
 
 import "@testing-library/jest-dom/extend-expect";
 
@@ -222,7 +221,6 @@ describe("W12M Form render and submit tests", () => {
       expect(numberOfBeingsInput.value).toBe("8078300999");
     });
 
-    // ////////////////
     test("Form validation displays Number of Beings error message", () => {
       // Arrange
       mockNumberOfBeings.mockReturnValue(
@@ -272,8 +270,6 @@ describe("W12M Form render and submit tests", () => {
       const errorMessageAfterChange = numberOfBeings.nextElementSibling!;
       expect(errorMessageAfterChange).not.toBeInTheDocument;
     });
-
-    // ////////////////
   });
 
   describe("Tests for Two Plus Two dropdown", () => {
@@ -486,6 +482,63 @@ describe("W12M Form render and submit tests", () => {
       expect(console.log).toHaveBeenCalledWith(
         "reasonForSparing: We have the cutest cats in the universe."
       );
+    });
+
+    test("Entire form validation and submission output - formOutput", () => {
+      // Arrange
+      const formOutput = {
+        speciesName: "",
+        planetName: "",
+        numberOfBeings: "",
+        twoPlusTwo: "",
+        reasonForSparing: "",
+      };
+
+      const consoleSpy = jest.spyOn(console, "log");
+
+      // Act (mock submit)
+      document.createElement("form").submit = jest
+        .fn()
+        .mockImplementation((event) => {
+          event.preventDefault();
+
+          const { getByLabelText } = render(<W12MForm />);
+
+          const speciesNameInput = getByLabelText("Species Name:");
+          fireEvent.change(speciesNameInput, { target: { value: "Human" } });
+
+          const planetNameInput = getByLabelText("Planet Name:");
+          fireEvent.change(planetNameInput, { target: { value: "Earth" } });
+
+          const numberOfBeingsInput =
+            screen.getByLabelText("Number of Beings:");
+          fireEvent.change(numberOfBeingsInput, {
+            target: { value: "8078300999" },
+          });
+
+          const twoPlusTwoSelect = screen.getByLabelText("What is 2 + 2:");
+          fireEvent.change(twoPlusTwoSelect, { target: { value: "Four" } });
+
+          const reasonForSparingInput = screen.getByLabelText(
+            "Reason For Sparing?"
+          );
+          fireEvent.change(reasonForSparingInput, {
+            target: { value: "We have the cutest cats in the universe." },
+          });
+
+          const form = document.createElement("form");
+          form.dispatchEvent(new Event("submit"));
+
+          // Assert (& cleanup)
+          expect(formOutput).toEqual({
+            speciesName: "Human",
+            planetName: "Earth",
+            numberOfBeings: "8078300999",
+            twoPlusTwo: "Four",
+            reasonForSparing: "We have the cutest cats in the universe.",
+          });
+          consoleSpy.mockRestore();
+        });
     });
   });
 });
