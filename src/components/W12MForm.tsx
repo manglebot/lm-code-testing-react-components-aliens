@@ -57,7 +57,11 @@ const W12MForm = () => {
           onChangeReasonForSparing={(e) => setReasonForSparing(e.target.value)}
           validate={validateReasonForSparing}
         />
-        <button type="submit" aria-label="Submit the form">
+        <button
+          type="submit"
+          className="button__submit"
+          aria-label="Submit form"
+        >
           Submit Form
         </button>
       </form>
