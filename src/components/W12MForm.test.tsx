@@ -410,7 +410,7 @@ describe("W12M Form render and submit tests", () => {
       // Act
       render(<W12MForm />);
 
-      const submitButton = screen.getByLabelText("Submit the form");
+      const submitButton = screen.getByLabelText("Submit form");
       fireEvent.click(submitButton);
 
       // Assert (initial error message present)
@@ -435,6 +435,57 @@ describe("W12M Form render and submit tests", () => {
       );
       expect(errorMessageAfterChange).not.toBeInTheDocument();
     });
-    /////
+  });
+
+  describe("Tests Entire form validation and submission", () => {
+    let mockConsoleLog: jest.SpyInstance;
+
+    beforeEach(() => {
+      mockConsoleLog = jest.spyOn(console, "log").mockImplementation();
+    });
+
+    afterEach(() => {
+      mockConsoleLog.mockRestore();
+    });
+
+    test("Test for console log output", () => {
+      // Arrange
+      render(<W12MForm />);
+
+      // Act
+      const speciesNameInput = screen.getByLabelText("Species Name:");
+      fireEvent.change(speciesNameInput, { target: { value: "Human" } });
+
+      const planetNameInput = screen.getByLabelText("Planet Name:");
+      fireEvent.change(planetNameInput, { target: { value: "Earth" } });
+
+      const numberOfBeingsInput = screen.getByLabelText("Number of Beings:");
+      fireEvent.change(numberOfBeingsInput, {
+        target: { value: "8078300999" },
+      });
+
+      const twoPlusTwoSelect = screen.getByLabelText("What is 2 + 2:");
+      fireEvent.change(twoPlusTwoSelect, { target: { value: "Four" } });
+
+      const reasonForSparingInput = screen.getByLabelText(
+        "Reason For Sparing?"
+      );
+      fireEvent.change(reasonForSparingInput, {
+        target: { value: "We have the cutest cats in the universe." },
+      });
+
+      const submitButton = screen.getByRole("button", { name: /submit form/i });
+
+      fireEvent.click(submitButton);
+
+      // Assert
+      expect(console.log).toHaveBeenCalledWith("speciesName: Human");
+      expect(console.log).toHaveBeenCalledWith("planetName: Earth");
+      expect(console.log).toHaveBeenCalledWith("numberOfBeings: 8078300999");
+      expect(console.log).toHaveBeenCalledWith("twoPlusTwo: Four");
+      expect(console.log).toHaveBeenCalledWith(
+        "reasonForSparing: We have the cutest cats in the universe."
+      );
+    });
   });
 });
